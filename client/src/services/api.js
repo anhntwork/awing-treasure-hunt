@@ -1,7 +1,24 @@
-import axios from 'axios';
+import axios from "axios";
 
-const api = axios.create({
-  baseURL: 'http://localhost:5000/api',
-});
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-export default api;
+export const apiRequest = async (endpoint, method = "GET", headers = {}, { body, params } = {}) => {
+  try {
+    const response = await axios({
+      url: `${BASE_URL}${endpoint}`,
+      method,
+      headers,
+      data: body,
+      params,
+    });
+
+    if (response.status === 200 && response.data.isSuccess) {
+      return response.data;
+    } else {
+      throw new Error(response.data.message || "Unknown API error");
+    }
+  } catch (error) {
+    console.error("API Request Error:", error);
+    throw error;
+  }
+};

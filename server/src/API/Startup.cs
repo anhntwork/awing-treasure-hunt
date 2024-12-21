@@ -39,6 +39,17 @@ namespace API
                 options.Filters.Add<HttpResponseExceptionFilter>();
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowFrontend",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:5173") 
+                              .AllowAnyHeader() 
+                              .AllowAnyMethod();
+                    });
+            });
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
@@ -56,6 +67,8 @@ namespace API
             app.UseRewriter(option);
             // app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCors("AllowFrontend");
+            app.UseRouting();
             app.UseAuthorization();
             app.MapControllers();
             app.UseMiddleware<ResponseWrapperMiddleware>();

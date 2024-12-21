@@ -8,11 +8,11 @@ namespace API.Controllers.Public
     [ApiController]
     public class TreasureHuntController : ControllerBase
     {
-        private readonly IMediator mediator;
+        private readonly IMediator _mediator;
 
         public TreasureHuntController(IMediator mediator)
         {
-            this.mediator = mediator;
+            _mediator = mediator;
         }
 
         [HttpPost("calculate-fuel")]
@@ -23,7 +23,7 @@ namespace API.Controllers.Public
                 return BadRequest(ModelState);
             }
 
-            var result = await mediator.Send(command);
+            var result = await _mediator.Send(command);
             return Ok(result);
         }
     }

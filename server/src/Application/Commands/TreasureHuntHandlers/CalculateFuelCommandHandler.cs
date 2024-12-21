@@ -7,7 +7,7 @@ namespace Application.Commands.TreasureHuntHandlers
     {
         public async Task<double> Handle(CalculateFuelCommand request, CancellationToken cancellationToken)
         {
-            if (request is null)
+            if (request == null)
             {
                 throw new ArgumentNullException(nameof(request));
             }
@@ -17,19 +17,13 @@ namespace Application.Commands.TreasureHuntHandlers
             {
                 for (int j = 0; j < request.M; j++)
                 {
-                    int chest = request.Matrix[i][j];
-                    positions[chest] = (i, j);
+                    positions[request.Matrix[i][j]] = (i, j);
                 }
             }
 
             double totalFuel = 0;
             for (int i = 1; i < request.P; i++)
             {
-                if (!positions.ContainsKey(i) || !positions.ContainsKey(i + 1))
-                {
-                    throw new InvalidOperationException($"Invalid input: Missing positions for chests {i} or {i + 1}.");
-                }
-
                 var (x1, y1) = positions[i];
                 var (x2, y2) = positions[i + 1];
                 totalFuel += Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
@@ -39,3 +33,4 @@ namespace Application.Commands.TreasureHuntHandlers
         }
     }
 }
+
