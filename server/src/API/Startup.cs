@@ -31,7 +31,7 @@ namespace API
 
             services.AddMediatR(typeof(Startup).Assembly);
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(TransactionBehavior<,>));
-            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ITreasureHuntRepository, TreasureHuntRepository>();
             services.RegisterCommandHandlers();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddControllers(options =>

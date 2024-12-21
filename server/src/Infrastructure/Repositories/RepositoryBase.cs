@@ -43,8 +43,6 @@ namespace Infrastructure.Repositories
         {
             await _context.Set<TEntity>().AddAsync(entity);
         }
-
-
-        // Các phương thức khác...
+        
     }
 }

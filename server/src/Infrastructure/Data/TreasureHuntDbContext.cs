@@ -12,7 +12,7 @@ namespace Infrastructure.Data
 
         }
 
-        public DbSet<ProductEntity> Products { get; set; }
+        public DbSet<TreasureHuntRequestEntity> TreasureHuntRequests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
