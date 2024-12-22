@@ -6,6 +6,7 @@ import HistoryIcon from "@mui/icons-material/History";
 
 function Header() {
   const location = useLocation();
+  const appName = import.meta.env.VITE_APP_NAME;
 
   return (
     <AppBar position="static" color="primary">
@@ -16,7 +17,7 @@ function Header() {
           component={Link}
           to="/"
         >
-          Treasure Hunt
+          {appName}
         </Typography>
         <Tabs
           value={location.pathname}

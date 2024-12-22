@@ -12,6 +12,7 @@ function TreasureHuntPage() {
     const [result, setResult] = useState(null);
     const showAlert = useAlert();
     const [errors, setErrors] = useState({ n: false, m: false, p: false, matrix: false });
+    const [btnSubmitEnable, setBtnSubmitEnable] = useState(true)
 
     const handleMatrixChange = (row, col, value) => {
         const newMatrix = [...matrix];
@@ -21,6 +22,7 @@ function TreasureHuntPage() {
     };
 
     const handleSubmit = async () => {
+        setBtnSubmitEnable(false)
         const newErrors = {
             n: !n,
             m: !m,
@@ -39,7 +41,7 @@ function TreasureHuntPage() {
             const body = { n: parseInt(n), m: parseInt(m), p: parseInt(p), matrix };
 
             const response = await apiRequest(END_POINT.CalculateFuel, "POST", headers, { body });
-
+            setBtnSubmitEnable(true)
             if (response.isSuccess) {
                 showAlert.showAlert(`Minimum Fuel: ${response.data}`, "success");
                 setResult(response.data)
@@ -47,6 +49,7 @@ function TreasureHuntPage() {
                 showAlert.showAlert(response.message || "Unknown error", "error");
             }
         } catch (error) {
+            setBtnSubmitEnable(true)
             showAlert.showAlert("Failed to calculate fuel. Please try again.", "error");
         }
     };
@@ -94,7 +97,7 @@ function TreasureHuntPage() {
                         ))}
                     </Grid2>
                     <Grid2 xs={12}>
-                        <Button variant="contained" onClick={handleSubmit}>
+                        <Button variant="contained" disabled={!btnSubmitEnable} onClick={handleSubmit}>
                             Calculate Fuel
                         </Button>
                     </Grid2>

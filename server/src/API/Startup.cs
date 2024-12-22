@@ -41,11 +41,19 @@ namespace API
 
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowFrontend",
+                options.AddPolicy("AllowFrontendDevelopment",
                     policy =>
                     {
                         policy.WithOrigins("http://localhost:5173") 
                               .AllowAnyHeader() 
+                              .AllowAnyMethod();
+                    });
+
+                options.AddPolicy("AllowFrontendDocker",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:5173")
+                              .AllowAnyHeader()
                               .AllowAnyMethod();
                     });
             });
@@ -64,10 +72,17 @@ namespace API
             }
             var option = new RewriteOptions();
             option.AddRedirect("^$", "swagger");
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<TreasureHuntDbContext>();
+                dbContext.Database.Migrate();
+            }
             app.UseRewriter(option);
             // app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCors("AllowFrontend");
+            app.UseCors("AllowFrontendDevelopment");
+            app.UseCors("AllowFrontendDocker");
             app.UseRouting();
             app.UseAuthorization();
             app.MapControllers();
