@@ -1,6 +1,6 @@
 ﻿using Application.Commands.TreasureHuntHandlers;
 using Domain;
-using Domain.Commands.TreasureHunt;
+using Application.Commands.TreasureHunt;
 using Domain.IRepositories;
 using Moq;
 using Xunit;

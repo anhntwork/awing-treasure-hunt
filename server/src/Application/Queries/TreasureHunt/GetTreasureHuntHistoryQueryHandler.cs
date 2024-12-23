@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
 using Domain.IRepositories;
-using Domain.Queries.TreasureHunt;
+using Application.Queries.TreasureHunt;
 using MediatR;
 
 namespace Application.Queries.TreasureHuntHandlers

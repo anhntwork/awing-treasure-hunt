@@ -1,8 +1,8 @@
 ﻿using Application.Commands.TreasureHuntHandlers;
 using Application.Queries.TreasureHuntHandlers;
-using Domain.Commands.TreasureHunt;
+using Application.Commands.TreasureHunt;
 using Domain.Entities;
-using Domain.Queries.TreasureHunt;
+using Application.Queries.TreasureHunt;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 

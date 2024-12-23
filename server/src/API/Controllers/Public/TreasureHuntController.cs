@@ -1,5 +1,5 @@
-﻿using Domain.Commands.TreasureHunt;
-using Domain.Queries.TreasureHunt;
+﻿using Application.Commands.TreasureHunt;
+using Application.Queries.TreasureHunt;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,6 +37,5 @@ namespace API.Controllers.Public
 
             return Ok(results);
         }
-
     }
 }

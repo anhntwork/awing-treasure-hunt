@@ -1,5 +1,5 @@
 ﻿using Domain;
-using Domain.Commands.TreasureHunt;
+using Application.Commands.TreasureHunt;
 using Domain.Entities;
 using Domain.IRepositories;
 using Infrastructure.Repositories;

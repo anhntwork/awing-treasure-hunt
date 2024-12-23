@@ -1,9 +1,8 @@
 ﻿using API.Controllers.Public;
-using Domain.Commands.TreasureHunt;
+using Application.Commands.TreasureHunt;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using System.Threading.Tasks;
 using Xunit;
 
 public class TreasureHuntControllerTests

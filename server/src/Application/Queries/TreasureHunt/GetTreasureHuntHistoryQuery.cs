@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using MediatR;
 
-namespace Domain.Queries.TreasureHunt
+namespace Application.Queries.TreasureHunt
 {
     public class GetTreasureHuntHistoryQuery : IRequest<IEnumerable<TreasureHuntRequestEntity>>
     {
